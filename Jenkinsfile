@@ -2,7 +2,7 @@ pipeline {
     agent { label 'kslave1-agent' }
     tools {
         jdk 'Java17'
-        maven 'maven'
+        maven 'Maven3'
     }
     stages{
         stage("Cleanup Workspace"){

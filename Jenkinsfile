@@ -26,7 +26,7 @@ pipeline {
 
        stage("Test Application"){
            steps {
-                 sh "mvn test"
+                 sh "mvn -X test"
            }
        }
 
@@ -34,7 +34,7 @@ pipeline {
            steps {
 	           script {
 		        withSonarQubeEnv(credentialsId: 'sonarqube_jenkins') { 
-                        sh "mvn sonar:sonar"
+                        sh "mvn -X sonar:sonar"
 		     }
 	        }	
            }

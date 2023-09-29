@@ -244,6 +244,72 @@ $ sudo su
 ```bash
 $ curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.1/2023-04-19/bin/linux/amd64/kubectl
 ```
+```bash
 $ ll , $ chmod +x ./kubectl  //Gave executable permisions
 $ mv kubectl /bin   //Because all our executable files are in /bin
 $ kubectl version --output=yaml
+```
+## Installing  eksctl
+### Refer---https://github.com/eksctl-io/eksctl/blob/main/README.md#installation
+```bash
+$ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+```
+```bash
+$ cd /tmp
+$ ll
+$ sudo mv /tmp/eksctl /bin
+$ eksctl version
+```
+## Setup Kubernetes using eksctl
+### Refer--https://github.com/aws-samples/eks-workshop/issues/734
+```bash
+$ eksctl create cluster --name virtualtechbox-cluster \
+--region ap-south-1 \
+--node-type t2.small \
+--nodes 3 \
+```
+``bash
+$ kubectl get nodes
+```
+```
+# ArgoCD Installation on EKS Cluster and Adding EKS Cluster to ArgoCD
+
+## Step 1: First, create a namespace
+    $ kubectl create namespace argocd
+
+## Step 2: Next, let's apply the yaml configuration files for ArgoCd
+    $ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+## Step 3: Now we can view the pods created in the ArgoCD namespace.
+    $ kubectl get pods -n argocd
+
+## Step 4: To interact with the API Server we need to deploy the CLI:
+    $ curl --silent --location -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v2.4.7/argocd-linux-amd64
+    $ chmod +x /usr/local/bin/argocd
+
+## Step 5: Expose argocd-server
+    $ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+
+## Step 6: Wait about 2 minutes for the LoadBalancer creation
+    $ kubectl get svc -n argocd
+
+## Step 7: Get pasword and decode it.
+    $ kubectl get secret argocd-initial-admin-secret -n argocd -o yaml
+    $ echo WXVpLUg2LWxoWjRkSHFmSA== | base64 --decode
+
+# Add EKS Cluster to ArgoCD
+## Step 1: login to ArgoCD from CLI
+    $ argocd login a2255bb2bb33f438d9addf8840d294c5-785887595.ap-south-1.elb.amazonaws.com --username admin
+
+## Step 2:  cluster list
+     $ argocd cluster list
+
+## Step 3: Below command will show the EKS cluster
+     $ kubectl config get-contexts
+
+## Step 5: Add above EKS cluster to ArgoCD with below command
+     $ argocd cluster add i-08b9d0ff0409f48e7@virtualtechbox-cluster.ap-south-1.eksctl.io --name virtualtechbox-eks-cluster
+
+### Step 6: check services
+     $ kubectl get svc
+

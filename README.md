@@ -135,66 +135,39 @@ This guide will walk you through the process of setting up SonarQube on an Ubunt
    $ sudo apt-get -y install postgresql postgresql-contrib
    $ sudo systemctl enable postgresql
 ## Create Database for Sonarqube
-    ---bash
     $ sudo passwd postgres
-    ```
-    ```bash
     $ su - postgres
-    ```
-    ```bash
     $ createuser sonar
-    ```
-    ```bash
     $ psql
-    ```
-    ```bash
     $ ALTER USER sonar WITH ENCRYPTED password 'sonar';
-    ```
-    ```shell
     $ CREATE DATABASE sonarqube OWNER sonar;
-    ```
-    ```shell
     $ grant all privileges on DATABASE sonarqube to sonar;
-    ```
-    ```bash
     $ \q
-    ```
     $ exit
-    ```
 ## Add Adoptium repository
-    ```bash
     $ sudo bash
-    ```
     $ wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
-    ```
     $ echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
-    ```
  ## Install Java 17
-    ```bash
     $ apt update
     $ apt install temurin-17-jdk
     $ update-alternatives --config java
     $ /usr/bin/java --version
     $ exit 
-    ```
 ## Linux Kernel Tuning
    # Increase Limits
-    ```bash
     $ sudo vim /etc/security/limits.conf
-    ```
+   
    # Paste the below values at the bottom of the file
-    ```bash
     sonarqube   -   nofile   65536
     sonarqube   -   nproc    4096
-    ```
+   
    # Increase Mapped Memory Regions
-     ```bash
      $ sudo vim /etc/sysctl.conf
-     ```
+     
   # Paste the below values at the bottom of the file
     vm.max_map_count = 262144
-    ```
-
+   
 #### Sonarqube Installation ####
 ## Download and Extract
     $ sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.0.65466.zip

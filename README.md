@@ -126,6 +126,8 @@ This guide will walk you through the process of setting up SonarQube on an Ubunt
 ## Add PostgreSQL Repository
    ```bash
    $ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+   ```
+   ```
    $ wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
    ```
 ## Install PostgreSQL
@@ -170,10 +172,14 @@ This guide will walk you through the process of setting up SonarQube on an Ubunt
    
 # Sonarqube Installation #
 ## Download and Extract
+    ```
     $ sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.0.65466.zip
+    ```
+    ```
     $ sudo apt install unzip
     $ sudo unzip sonarqube-9.9.0.65466.zip -d /opt
     $ sudo mv /opt/sonarqube-9.9.0.65466 /opt/sonarqube
+    ```
 ## Create user and set permissions
      $ sudo groupadd sonar
      $ sudo useradd -c "user to run SonarQube" -d /opt/sonarqube -g sonar sonar
@@ -284,9 +290,12 @@ $ kubectl get nodes
     $ kubectl get pods -n argocd
 
 ### Step 4: To interact with the API Server we need to deploy the CLI:
+    ```
     $ curl --silent --location -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v2.4.7/argocd-linux-amd64
+    ```
+    ```
     $ chmod +x /usr/local/bin/argocd
-
+    ```
 ### Step 5: Expose argocd-server
     $ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 

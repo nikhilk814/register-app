@@ -217,3 +217,20 @@ $ sudo vim /etc/systemd/system/sonar.service
 
 ## Watch log files and monitor for startup
      $ sudo tail -f /opt/sonarqube/logs/sonar.log        
+
+# Setup Bootstrap Server for eksctl and Setup Kubernetes using eksctl
+
+## Install AWS CLI on the above EC2
+Follow the steps below to install AWS CLI:
+
+```bash
+$ sudo su
+$ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+$ apt install unzip
+$ unzip awscliv2.zip
+$ sudo ./aws/install
+# OR
+$ sudo yum remove -y aws-cli
+$ pip3 install --user awscli
+$ sudo ln -s $HOME/.local/bin/aws /usr/bin/aws
+$ aws --version

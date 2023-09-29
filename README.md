@@ -238,8 +238,10 @@ $ aws --version
 
 ## Installing kubectl
 ### Refer--https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+```bash
 $ sudo su
----shell
+```
+```bash
 $ curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.1/2023-04-19/bin/linux/amd64/kubectl
 ```
 $ ll , $ chmod +x ./kubectl  //Gave executable permisions

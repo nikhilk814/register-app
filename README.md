@@ -185,8 +185,9 @@ This guide will walk you through the process of setting up SonarQube on an Ubunt
      sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonarqube
      
 ## Create service for Sonarqube
+```bash
 $ sudo vim /etc/systemd/system/sonar.service
-
+```
 ## Paste the below into the file
      [Unit]
      Description=SonarQube service
@@ -229,12 +230,13 @@ $ apt install unzip
 $ unzip awscliv2.zip
 $ sudo ./aws/install
 ```
+```
 ## OR
 $ sudo yum remove -y aws-cli
 $ pip3 install --user awscli
 $ sudo ln -s $HOME/.local/bin/aws /usr/bin/aws
 $ aws --version
-
+```
 ## Installing kubectl
 ### Refer--https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
 ```bash
@@ -250,9 +252,7 @@ $ kubectl version --output=yaml
 ```
 ## Installing  eksctl
 ### Refer---https://github.com/eksctl-io/eksctl/blob/main/README.md#installation
-```bash
 $ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-```
 ```bash
 $ cd /tmp
 $ ll

@@ -216,7 +216,8 @@ $ sudo vim /etc/systemd/system/sonar.service
      $ sudo systemctl status sonar
 
 ## Watch log files and monitor for startup
-     $ sudo tail -f /opt/sonarqube/logs/sonar.log        
+     $ sudo tail -f /opt/sonarqube/logs/sonar.log  
+### default sonarqube port:9000
 
 # Setup Bootstrap Server for eksctl and Setup Kubernetes using eksctl
 
@@ -268,8 +269,8 @@ $ eksctl create cluster --name virtualtechbox-cluster \
 --node-type t2.small \
 --nodes 3 \
 ```
-$ kubectl get nodes
 ```
+$ kubectl get nodes
 ```
 # ArgoCD Installation on EKS Cluster 
 

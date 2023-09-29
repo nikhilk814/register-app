@@ -131,11 +131,9 @@ This guide will walk you through the process of setting up SonarQube on an Ubunt
    $ wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
    ```
 ## Install PostgreSQL
-   ```bash
    $ sudo apt update
    $ sudo apt-get -y install postgresql postgresql-contrib
    $ sudo systemctl enable postgresql
-   ```
 ## Create Database for Sonarqube
     ---bash
     $ sudo passwd postgres
@@ -143,16 +141,22 @@ This guide will walk you through the process of setting up SonarQube on an Ubunt
     ```bash
     $ su - postgres
     ```
+    ```bash
     $ createuser sonar
     ```
+    ```bash
     $ psql
     ```
+    ```bash
     $ ALTER USER sonar WITH ENCRYPTED password 'sonar';
     ```
+    ```shell
     $ CREATE DATABASE sonarqube OWNER sonar;
     ```
+    ```shell
     $ grant all privileges on DATABASE sonarqube to sonar;
     ```
+    ```bash
     $ \q
     ```
     $ exit

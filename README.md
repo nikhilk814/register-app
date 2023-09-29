@@ -268,11 +268,10 @@ $ eksctl create cluster --name virtualtechbox-cluster \
 --node-type t2.small \
 --nodes 3 \
 ```
-``bash
 $ kubectl get nodes
 ```
 ```
-# ArgoCD Installation on EKS Cluster and Adding EKS Cluster to ArgoCD
+# ArgoCD Installation on EKS Cluster 
 
 ### Step 1: First, create a namespace
     $ kubectl create namespace argocd

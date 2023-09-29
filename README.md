@@ -144,31 +144,31 @@ This guide will walk you through the process of setting up SonarQube on an Ubunt
     $ grant all privileges on DATABASE sonarqube to sonar;
     $ \q
     $ exit
-## Add Adoptium repository
+# Add Adoptium repository
     $ sudo bash
     $ wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
     $ echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
- ## Install Java 17
+ # Install Java 17
     $ apt update
     $ apt install temurin-17-jdk
     $ update-alternatives --config java
     $ /usr/bin/java --version
     $ exit 
-## Linux Kernel Tuning
-   # Increase Limits
+# Linux Kernel Tuning
+   ## Increase Limits
     $ sudo vim /etc/security/limits.conf
    
-   # Paste the below values at the bottom of the file
+   ## Paste the below values at the bottom of the file
     sonarqube   -   nofile   65536
     sonarqube   -   nproc    4096
    
-   # Increase Mapped Memory Regions
+   ## Increase Mapped Memory Regions
      $ sudo vim /etc/sysctl.conf
      
-  # Paste the below values at the bottom of the file
+  ## Paste the below values at the bottom of the file
     vm.max_map_count = 262144
    
-#### Sonarqube Installation ####
+# Sonarqube Installation #
 ## Download and Extract
     $ sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.0.65466.zip
     $ sudo apt install unzip
@@ -180,13 +180,16 @@ This guide will walk you through the process of setting up SonarQube on an Ubunt
      $ sudo chown sonar:sonar /opt/sonarqube -R
 ## Update Sonarqube properties with DB credentials
      $ sudo vim /opt/sonarqube/conf/sonar.properties
-     //Find and replace the below values, you might need to add the sonar.jdbc.url
+     
+## Find and replace the below values, you might need to add the sonar.jdbc.url
      sonar.jdbc.username=sonar
      sonar.jdbc.password=sonar
      sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonarqube
+     
 ## Create service for Sonarqube
 $ sudo vim /etc/systemd/system/sonar.service
-//Paste the below into the file
+
+## Paste the below into the file
      [Unit]
      Description=SonarQube service
      After=syslog.target network.target

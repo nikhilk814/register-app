@@ -168,7 +168,6 @@ This guide will walk you through the process of setting up SonarQube on an Ubunt
    
 # Sonarqube Installation #
 ## Download and Extract
-
     $ sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.0.65466.zip
     $ sudo apt install unzip
     $ sudo unzip sonarqube-9.9.0.65466.zip -d /opt

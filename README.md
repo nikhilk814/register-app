@@ -122,7 +122,8 @@ This guide will walk you through the process of setting up SonarQube on an Ubunt
 ```shell
 $ sudo apt update
 $ sudo apt upgrade
+```
+## Add PostgreSQL Repository
 
-Add PostgreSQL Repository
 $ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 $ wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null

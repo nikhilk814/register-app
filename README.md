@@ -230,8 +230,8 @@ $ apt install unzip
 $ unzip awscliv2.zip
 $ sudo ./aws/install
 ```
-```
 ## OR
+```
 $ sudo yum remove -y aws-cli
 $ pip3 install --user awscli
 $ sudo ln -s $HOME/.local/bin/aws /usr/bin/aws
@@ -252,7 +252,9 @@ $ kubectl version --output=yaml
 ```
 ## Installing  eksctl
 ### Refer---https://github.com/eksctl-io/eksctl/blob/main/README.md#installation
+```
 $ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+```
 ```bash
 $ cd /tmp
 $ ll
@@ -282,12 +284,9 @@ $ kubectl get nodes
     $ kubectl get pods -n argocd
 
 ### Step 4: To interact with the API Server we need to deploy the CLI:
-    ```
     $ curl --silent --location -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v2.4.7/argocd-linux-amd64
-    ```
-    ```
     $ chmod +x /usr/local/bin/argocd
-    ```
+
 ### Step 5: Expose argocd-server
     $ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 

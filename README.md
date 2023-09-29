@@ -116,23 +116,23 @@ That's it! You've successfully installed and configured Jenkins on your server, 
 
 
 ## Update Package Repository and Upgrade Packages
-    ---bash
+   
     $ sudo apt update
     $ sudo apt upgrade
-    ---
+  
 ## Add PostgresSQL repository
     ---bash
     $ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
     $ wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
     ---
 ## Install PostgreSQL
-    ---bash
+   
     $ sudo apt update
     $ sudo apt-get -y install postgresql postgresql-contrib
     $ sudo systemctl enable postgresql
-    ---
+  
 ## Create Database for Sonarqube
-    ---bash
+
     $ sudo passwd postgres
     $ su - postgres
     $ createuser sonar
@@ -142,15 +142,15 @@ That's it! You've successfully installed and configured Jenkins on your server, 
     $ grant all privileges on DATABASE sonarqube to sonar;
     $ \q
     $ exit
-    ---
+ 
 ## Add Adoptium repository
-    ---bash
+
     $ sudo bash
     $ wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
     $ echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
-    ---
+ 
  ## Install Java 17
-    ---bash
+    
     $ apt update
     $ apt install temurin-17-jdk
     $ update-alternatives --config java
@@ -160,13 +160,14 @@ That's it! You've successfully installed and configured Jenkins on your server, 
 ## Linux Kernel Tuning
    # Increase Limits
     $ sudo vim /etc/security/limits.conf
-    //Paste the below values at the bottom of the file
+    
+   # Paste the below values at the bottom of the file
     sonarqube   -   nofile   65536
     sonarqube   -   nproc    4096
 
-    # Increase Mapped Memory Regions
+  # Increase Mapped Memory Regions
     sudo vim /etc/sysctl.conf
-    //Paste the below values at the bottom of the file
+   # Paste the below values at the bottom of the file
     vm.max_map_count = 262144
 
 #### Sonarqube Installation ####
@@ -215,10 +216,5 @@ $ sudo vim /etc/systemd/system/sonar.service
 
 ## Watch log files and monitor for startup
      $ sudo tail -f /opt/sonarqube/logs/sonar.log
-create markdown syntax - We use `#` to create headings (e.g., `# My Awesome Project` and `## Features`).
-- Bullet points are created with `-` or `*` (e.g., `- **Feature 1:**`).
-- Code blocks are enclosed in triple backticks (```) with an optional language identifier.
-- Links are created using square brackets and parentheses (e.g., `[MIT License](LICENSE)`).
-- You can create internal links within the README using `[Link Text](#section-name)`.
- for github readme file
+
 
